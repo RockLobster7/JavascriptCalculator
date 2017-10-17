@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Javascript Calculator</title>
+
+    <!-- normalize -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+
+    <!-- Bootstrap 3 -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <!-- Animate and Font Awesome css -->
+    <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css'>
+    <link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'>
+
+    <!-- local files -->
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/index.js"></script>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class='row'>
+            <div id='calculator' class=''>
+                <!-- <h1> display</h1> -->
+                <h1 id='display'>0</h1>
+
+                <div class='number-row'>
+                    <button id='clear' class="btn btn-success btn-lg">c</button>
+                    <button id='divide' class="btn btn-success btn-lg">&divide;</button>
+                    <button id='multiply' class="btn btn-success btn-lg">&times;</button>
+                    <button id='subtract' class="btn btn-success btn-lg">&minus;</button>
+                </div>
+
+                <div class='number-row'>
+                    <button id='seven' class="btn btn-warning btn-lg">7</button>
+                    <button id='eight' class="btn btn-warning btn-lg">8</button>
+                    <button id='nine' class="btn btn-warning btn-lg">9</button>
+                    <button id='addition' class="btn btn-success btn-lg tall-btn">+</button>
+                </div>
+
+                <div class='number-row'>
+                    <button id='four' class="btn btn-warning btn-lg">4</button>
+                    <button id='five' class="btn btn-warning btn-lg">5</button>
+                    <button id='six' class="btn btn-warning btn-lg">6</button>
+                </div>
+
+                <div class='number-row'>
+                    <button id='one' class="btn btn-warning btn-lg">1</button>
+                    <button id='two' class="btn btn-warning btn-lg">2</button>
+                    <button id='three' class="btn btn-warning btn-lg">3</button>
+                    <button id='equals' class="btn btn-success btn-lg tall-btn">=</button>
+                </div>
+
+                <div class='number-row'>
+                    <button id='zero' class="btn btn-warning btn-lg">0</button>
+                    <button id='dot' class="btn btn-warning btn-lg"> . </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
