@@ -6,39 +6,6 @@ body {
     overflow: hidden;
 }
 
-
-/*font sizes
-https://stackoverflow.com/questions/14537611/bootstrap-responsive-text-size
-
-If we set the base font size (the body font size), then everything will change if we use EM units.
-
-*/
-
-
-/*DYNAMICALLY RESPONSIVE TO SCREEN SIZE*/
-
-
-/*1vw = 1% of viewport width
-1vh = 1% of viewport height
-1vmin = 1vw or 1vh, whichever is smaller
-1vmax = 1vw or 1vh, whichever is larger*/
-
-
-/*
-h1 {
-  font-size: 5.9vw;
-}
-h2 {
-  font-size: 3.0vh;
-}
-p {
-  font-size: 2vmin;
-}*/
-
-
-/*SNAP TO SCREEN SIZE*/
-
-
 /*.col-xs-*/
 
 @media screen and (max-width: 767px) {
@@ -138,8 +105,16 @@ a:focus {
     margin: 0 auto;
 }
 
-#display {
+.display {
     text-align: right;
+}
+
+#main-display {
+    font-size: 2em;
+}
+
+#working-display {
+    font-size: 1em;
 }
 
 #btn-zero {
