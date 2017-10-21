@@ -18,27 +18,39 @@ $(document).ready(function () {
     //handle operators
     $('.operator').click(function () {
         //if the display is showing 0, then overwrite it with a number, else append the operator
-        if ($('#main-display').text() !== '0') {
-            if ($('#working-display').text() !== '0') {
+        if ($('#main-display').text() !== '0' && $('#main-display').text() !== '0.') {
+
+            //if the last character in the working display is a period, then remove it and append operator
+            let workingDisplay = $('#working-display').text();
+            if (workingDisplay[workingDisplay.length - 1] === '.') {
+                $('#working-display').text(workingDisplay.substring(0,workingDisplay.length-1) + $(this).text());
+            } else {
                 $('#working-display').text($('#working-display').text() + $(this).text());
             }
+            
+            //zero out the main display for the next number
             $('#main-display').text('0');
-        }
+        };
     });
 
     //handle period
     $('#btn-period').click(function () {
-        //append only one period on the display
-        if ($('#main-display').text().indexOf('.') === -1)
+        //append only one period per number sequence
+        if ($('#main-display').text().indexOf('.') === -1) {
+            if ($('#main-display').text() === '0' && $('#working-display').text() !== '0') {
+                $('#working-display').text($('#working-display').text() + '0.');
+            } else {
+                $('#working-display').text($('#working-display').text() + '.');
+            }
             $('#main-display').text($('#main-display').text() + '.');
-
-            
-            $('#working-display').text($('#working-display').text() + '.');
+        }
     });
 
     //handle clear
-    $('#btn-clear').click(() => $('#working-display').text('0'));
-    $('#btn-clear').click(() => $('#main-display').text('0'));
+    $('#btn-clear').click(() => {
+        $('#working-display').text('0');
+        $('#main-display').text('0');
+    });
 
     //handle equals
     $('#btn-equals').click(function () {
