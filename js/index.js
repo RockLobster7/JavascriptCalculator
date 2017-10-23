@@ -1,5 +1,5 @@
 $(document).ready(function () {
-   
+
     //handle numbers
     $('.number').click(function () {
         //if the display is showing 0, then overwrite it with a number, else append
@@ -17,23 +17,29 @@ $(document).ready(function () {
 
     //handle operators
     $('.operator').click(function () {
+ 
+        let workingDisplay = $('#working-display').text();
+
         //if the display is not showing 0, then append the operator
         if ($('#main-display').text() !== '0' && $('#main-display').text() !== '0.') {
 
             //if the last character in the working display is a period, then remove it to append operator
-            let workingDisplay = $('#working-display').text();
+ 
             if (workingDisplay[workingDisplay.length - 1] === '.') {
                 $('#working-display').text(workingDisplay.substring(0, workingDisplay.length - 1) + $(this).text());
+
             } else {
                 $('#working-display').text($('#working-display').text() + $(this).text());
             }
-
-            // alert(runningTotal($('#main-display').text(), $(this).text()));
-
             //zero out the main display for the next number
             $('#main-display').text('0');
 
         };
+
+        //swap the operator around if the user changes his mind
+        if (/[÷×−+]$/.test(workingDisplay)) {
+            $('#working-display').text(workingDisplay.substring(0, workingDisplay.length - 1) + $(this).text());
+        }
     });
 
     //handle period
@@ -57,17 +63,28 @@ $(document).ready(function () {
 
     //handle equals
     $('#btn-equals').click(function () {
+        //if the string does not already contain an equals and ends with a digit
         if (/^[^=]+\d$/.test($('#working-display').text())) {
 
-            let x = $('#working-display').text();
+            // convertHTML symbols to javascript arithmetic operators
+            var html = {
+                "÷": ")/",
+                "×": ")*",
+                "−": ")-",
+                "+": ")+"
+            };
+            let expr = $('#working-display').text()
+                .replace(/[÷×−+]/g, (char) => html[char]);
 
-            $('#working-display').text($('#working-display').text() + $(this).text());
+            //add parentheses to encapsulate the mathematical expression because eval wont do it 
+            //and produces incorrect results
+            for (i = 0; i < expr.split(')').length - 1; i++) {
+                expr = '(' + expr;
+            }
+            let result = eval(expr);
 
-            //get this working eval will evaluate the string as a mathematical equation but you need to
-            //replace the HTML symbols with operators .e.g. x with * 
-            alert(eval(x));
+            $('#working-display').text(result);
+            $('#main-display').text(result);
         }
     });
-
-
 });
