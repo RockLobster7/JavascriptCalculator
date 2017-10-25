@@ -22,9 +22,19 @@ $(document).ready(function () {
 
             //otherwise append the digit to both displays
         } else {
-            $('#main-display').text($('#main-display').text() + $(this).text());
+            // $('#main-display').text($('#main-display').text() + $(this).text());
             $('#working-display').text($('#working-display').text() + $(this).text());
+
+            // remove any commas as it will upset the parseFloat
+            let numberToDisplay = ($('#main-display').text() + $(this).text()).replace(/,/g,'');
+            // format and display the number
+            $('#main-display').text(parseFloat(numberToDisplay).toLocaleString('en-US', {maximumFractionDigits: 10}));
+            
+            // $('#working-display').text(parseFloat($('#working-display').text() + $(this).text()).toLocaleString());
         }
+
+        // alert (parseFloat($('#main-display').text() + $(this).text()).toLocaleString());
+        // alert(parseFloat($('#main-display').text()).toLocaleString());
     });
 
     //handle operators
@@ -50,6 +60,9 @@ $(document).ready(function () {
         if (/[÷×−+]$/.test(workingDisplay)) {
             $('#working-display').text(workingDisplay.substring(0, workingDisplay.length - 1) + $(this).text());
         }
+
+        //need to reset the wasEquals flag incase operator is being used right after the equals was pressed
+        wasEquals = false;
     });
 
 
@@ -79,10 +92,10 @@ $(document).ready(function () {
 
     //handle equals
     $('#btn-equals').click(function () {
-        //if the string does not already contain an equals and ends with a digit
+        //if the expression contains digits and ends with a period or digit
         if (/\d+(\.?$)(\d$)?/.test($('#working-display').text())) {
 
-            // convertHTML symbols to javascript arithmetic operators
+            // convertHTML symbols in the expression to javascript arithmetic operators
             var html = {
                 "÷": ")/",
                 "×": ")*",
