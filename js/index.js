@@ -23,18 +23,33 @@ $(document).ready(function () {
             //otherwise append the digit to both displays
         } else {
             // $('#main-display').text($('#main-display').text() + $(this).text());
-            $('#working-display').text($('#working-display').text() + $(this).text());
+            // $('#working-display').text($('#working-display').text() + $(this).text());
 
-            // remove any commas as it will upset the parseFloat
-            let numberToDisplay = ($('#main-display').text() + $(this).text()).replace(/,/g,'');
+            var formatNumber = (displayTxt) => {
+                let decimals = '';
+                // remove any existing commas as it will upset the parseFloat later on
+                let numberToDisplay = (displayTxt + $(this).text()).replace(/,/g, '');
+
+                //if the number contains a period, then preserve the decimal digits as toLocaleString() removes trailing zeros
+                if (numberToDisplay.indexOf('.') >= 0) {
+                    decimals = '.' + numberToDisplay.split('.')[1];
+                    numberToDisplay = numberToDisplay.split('.')[0];
+                }
+
+                // return the formatted number
+                return parseFloat(numberToDisplay).toLocaleString('en-US', {maximumFractionDigits: 10}) + decimals;
+            }
+
             // format and display the number
-            $('#main-display').text(parseFloat(numberToDisplay).toLocaleString('en-US', {maximumFractionDigits: 10}));
-            
-            // $('#working-display').text(parseFloat($('#working-display').text() + $(this).text()).toLocaleString());
-        }
+            $('#main-display').text(formatNumber($('#main-display').text()));
 
-        // alert (parseFloat($('#main-display').text() + $(this).text()).toLocaleString());
-        // alert(parseFloat($('#main-display').text()).toLocaleString());
+            ****parse the digits from the operators to format them and then put it backtogether 
+            $('#working-display').text(formatNumber($('#working-display').text()));
+
+// alert ($('#main-display').text()[$('#main-display').text().length-1]);
+
+            // $('#working-display').text($('#working-display').text() + $(this).text());
+        }
     });
 
     //handle operators
