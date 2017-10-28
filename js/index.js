@@ -38,7 +38,7 @@ $(document).ready(function () {
             $('#working-display').text($(this).text());
             wasEquals = false;
 
-            //otherwise append the digit to both displays
+            //otherwise append the digit and format the number on both displays
         } else {
             // $('#main-display').text($('#main-display').text() + $(this).text());
             // $('#working-display').text($('#working-display').text() + $(this).text());
@@ -46,36 +46,16 @@ $(document).ready(function () {
             // append the new digit, format it, and display the new number
             $('#main-display').text(formatNumber($('#main-display').text() + $(this).text()));
 
-            //add the next digit to the working display
-            //mutiple matches - facilitated by the /g - returns an array
-
+            // save the expreesion right up to the last operator but not the last number
             let currentExpression = $('#working-display').text().match(/(\d+\.?,?\d+[÷×−+]+)+(?![^[÷×−+]]+$)/g);
-            // let currentExpression = $('#working-display').text().match(/\d+[÷×−+](?![^\d[÷×−+]]*$)/g);
+            //put something in place so we dont append 'null' to the working display
             if (!currentExpression) currentExpression = [];
 
-
             //add the last digit, then isolate and format the last number of the current expression
-            // currentNumber = currentExpression.split(/[÷×−+](?=[^÷×−+]*$)/g);
             let currentNumber = $('#working-display').text() + $(this).text();
-
-            // currentNumber = currentNumber.match(/(\d+\.?,?)+(?=[^÷×−+]*$)/g);
-
             currentNumber = formatNumber(currentNumber.match(/(\d+\.?,?)+(?=[^÷×−+]*$)/g));
-            // currentNumber = formatNumber(currentNumber.match(/\d+(?=[^÷×−+]*$)/));
-            // currentNumber = currentNumber.split(/[÷×−+](?=[^÷×−+]*$)/g);
 
-            // currentNumber = formatNumber(currentNumber);
-
-            // alert(currentNumber);
-            // if (currentNumber) currentNumber = formatNumber(currentNumber);
-
-            // ****find everyhting but the last number - include last operator
-            // /\d+[÷×−+](?![^\d[÷×−+]]*$)/
-
-            // ****find the last number regex after the operator
-            // $('#working-display').text(currentExpression.replace(/\d+(?=[^÷×−+]*$)/, formattedNumber));
-
-            $('#working-display').text(currentExpression.join('') + currentNumber);
+            $('#working-display').text(currentExpression + currentNumber);
 
         }
     });
