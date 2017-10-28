@@ -47,7 +47,8 @@ $(document).ready(function () {
             $('#main-display').text(formatNumber($('#main-display').text() + $(this).text()));
 
             // save the expreesion right up to the last operator but not the last number
-            let currentExpression = $('#working-display').text().match(/(\d+\.?,?\d+[÷×−+]+)+(?![^[÷×−+]]+$)/g);
+            let currentExpression = $('#working-display').text().match(/.*[÷×−+]+(?![^[÷×−+]]+$)/g);
+            // let currentExpression = $('#working-display').text().match(/(\d+\.?,?\d+[÷×−+]+)+(?![^[÷×−+]]+$)/g);
             //put something in place so we dont append 'null' to the working display
             if (!currentExpression) currentExpression = [];
 
