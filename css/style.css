@@ -102,7 +102,7 @@ a:focus {
 #calculator {
     float: none;
     width: 190px;
-    margin: 0 auto;
+    margin: 50px auto;
 }
 
 .display {

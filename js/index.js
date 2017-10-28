@@ -2,6 +2,24 @@ $(document).ready(function () {
     //variable controls what should happen after the equals button was pressed
     var wasEquals = false;
 
+    function formatNumber(numToFormat) {
+        let decimals = '';
+        // remove any pre-existing commas as it will upset the parseFloat later on
+        numToFormat = numToFormat.toString().replace(/,/g, '');
+
+        //if the number contains a period, then preserve the decimal digits as toLocaleString() removes trailing zeros
+        if (numToFormat.indexOf('.') >= 0) {
+            decimals = '.' + numToFormat.split('.')[1];
+            numToFormat = numToFormat.split('.')[0];
+        }
+
+        // return the formatted number
+        return parseFloat(numToFormat).toLocaleString('en-US', {
+            maximumFractionDigits: 9
+        }) + decimals;
+    }
+
+
     //handle numbers
     $('.number').click(function () {
         //if the working display is showing 0, then overwrite it with a new digit
@@ -25,30 +43,40 @@ $(document).ready(function () {
             // $('#main-display').text($('#main-display').text() + $(this).text());
             // $('#working-display').text($('#working-display').text() + $(this).text());
 
-            var formatNumber = (displayTxt) => {
-                let decimals = '';
-                // remove any existing commas as it will upset the parseFloat later on
-                let numberToDisplay = (displayTxt + $(this).text()).replace(/,/g, '');
+            // append the new digit, format it, and display the new number
+            $('#main-display').text(formatNumber($('#main-display').text() + $(this).text()));
 
-                //if the number contains a period, then preserve the decimal digits as toLocaleString() removes trailing zeros
-                if (numberToDisplay.indexOf('.') >= 0) {
-                    decimals = '.' + numberToDisplay.split('.')[1];
-                    numberToDisplay = numberToDisplay.split('.')[0];
-                }
+            //add the next digit to the working display
+            //mutiple matches - facilitated by the /g - returns an array
 
-                // return the formatted number
-                return parseFloat(numberToDisplay).toLocaleString('en-US', {maximumFractionDigits: 10}) + decimals;
-            }
+            let currentExpression = $('#working-display').text().match(/(\d+\.?,?\d+[÷×−+]+)+(?![^[÷×−+]]+$)/g);
+            // let currentExpression = $('#working-display').text().match(/\d+[÷×−+](?![^\d[÷×−+]]*$)/g);
+            if (!currentExpression) currentExpression = [];
 
-            // format and display the number
-            $('#main-display').text(formatNumber($('#main-display').text()));
 
-            ****parse the digits from the operators to format them and then put it backtogether 
-            $('#working-display').text(formatNumber($('#working-display').text()));
+            //add the last digit, then isolate and format the last number of the current expression
+            // currentNumber = currentExpression.split(/[÷×−+](?=[^÷×−+]*$)/g);
+            let currentNumber = $('#working-display').text() + $(this).text();
 
-// alert ($('#main-display').text()[$('#main-display').text().length-1]);
+            // currentNumber = currentNumber.match(/(\d+\.?,?)+(?=[^÷×−+]*$)/g);
 
-            // $('#working-display').text($('#working-display').text() + $(this).text());
+            currentNumber = formatNumber(currentNumber.match(/(\d+\.?,?)+(?=[^÷×−+]*$)/g));
+            // currentNumber = formatNumber(currentNumber.match(/\d+(?=[^÷×−+]*$)/));
+            // currentNumber = currentNumber.split(/[÷×−+](?=[^÷×−+]*$)/g);
+
+            // currentNumber = formatNumber(currentNumber);
+
+            // alert(currentNumber);
+            // if (currentNumber) currentNumber = formatNumber(currentNumber);
+
+            // ****find everyhting but the last number - include last operator
+            // /\d+[÷×−+](?![^\d[÷×−+]]*$)/
+
+            // ****find the last number regex after the operator
+            // $('#working-display').text(currentExpression.replace(/\d+(?=[^÷×−+]*$)/, formattedNumber));
+
+            $('#working-display').text(currentExpression.join('') + currentNumber);
+
         }
     });
 
