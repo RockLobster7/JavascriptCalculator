@@ -46,13 +46,13 @@ $(document).ready(function () {
             // append the new digit, format it, and display the new number
             $('#main-display').text(formatNumber($('#main-display').text() + $(this).text()));
 
-            // save the expreesion right up to the last operator but not the last number
+            // retrieve the expreesion right up to the last operator but not the last number
             let currentExpression = $('#working-display').text().match(/.*[÷×−+]+(?![^[÷×−+]]+$)/g);
             // let currentExpression = $('#working-display').text().match(/(\d+\.?,?\d+[÷×−+]+)+(?![^[÷×−+]]+$)/g);
-            //put something in place so we dont append 'null' to the working display
+            // clean-up so we dont append 'null' to the working display
             if (!currentExpression) currentExpression = [];
 
-            //add the last digit, then isolate and format the last number of the current expression
+            //add the last digit, then extract and format the last number of the current expression
             let currentNumber = $('#working-display').text() + $(this).text();
             currentNumber = formatNumber(currentNumber.match(/(\d+\.?,?)+(?=[^÷×−+]*$)/g));
 
@@ -129,15 +129,18 @@ $(document).ready(function () {
             let expr = $('#working-display').text()
                 .replace(/[÷×−+]/g, (char) => html[char]);
 
+            //remove any thousand separator formatting before evaluating
+            expr = expr.replace(/,/g, '');
+
             //add parentheses to encapsulate the mathematical expression because eval won't do it 
-            //and produces incorrect results
+            //otherwise it produces incorrect results 
             for (i = 0; i < expr.split(')').length - 1; i++) {
                 expr = '(' + expr;
             }
             let result = eval(expr);
 
-            $('#working-display').text(result);
-            $('#main-display').text(result);
+            $('#working-display').text(formatNumber(result));
+            $('#main-display').text(formatNumber(result));
             wasEquals = true;
         }
     });
