@@ -2,6 +2,10 @@ $(document).ready(function () {
     //variable controls what should happen after the equals button was pressed
     var wasEquals = false;
 
+    //format a given number with commas as thousand's separator. 
+    //e.g. 1000 becomes 1,000 ; 1,000,000 becomes
+    //supports decimals
+    //returns a string
     function formatNumber(numToFormat) {
         let decimals = '';
         // remove any pre-existing commas as it will upset the parseFloat later on
@@ -22,6 +26,10 @@ $(document).ready(function () {
 
     //handle numbers
     $('.number').click(function () {
+        //limit how many digits can be entered
+        if ($('#main-display').text().length > 10) return;
+        if ($('#working-display').text().length > 20) return;
+
         //if the working display is showing 0, then overwrite it with a new digit
         if ($('#working-display').text() === '0') {
             $('#main-display').text($(this).text());
@@ -48,7 +56,6 @@ $(document).ready(function () {
 
             // retrieve the expreesion right up to the last operator but not the last number
             let currentExpression = $('#working-display').text().match(/.*[÷×−+]+(?![^[÷×−+]]+$)/g);
-            // let currentExpression = $('#working-display').text().match(/(\d+\.?,?\d+[÷×−+]+)+(?![^[÷×−+]]+$)/g);
             // clean-up so we dont append 'null' to the working display
             if (!currentExpression) currentExpression = [];
 
@@ -57,12 +64,13 @@ $(document).ready(function () {
             currentNumber = formatNumber(currentNumber.match(/(\d+\.?,?)+(?=[^÷×−+]*$)/g));
 
             $('#working-display').text(currentExpression + currentNumber);
-
         }
     });
 
     //handle operators
     $('.operator').click(function () {
+        //check that the screen is not full before adding more operators
+        if ($('#working-display').text().length > 19) return;
 
         let workingDisplay = $('#working-display').text();
 
@@ -93,8 +101,16 @@ $(document).ready(function () {
     //handle period
     $('#btn-period').click(function () {
 
-        //append only one period per number sequence
-        if ($('#main-display').text().indexOf('.') === -1) {
+        //if equals was pressed, reset the display with
+        if (wasEquals) {
+            $('#main-display').text('0.');
+            $('#working-display').text('0.');
+
+            //reset wasEquals so we can append a number instead of overwriting it
+            wasEquals = false;
+
+            //append only one period per number sequence
+        } else if ($('#main-display').text().indexOf('.') === -1) {
             if ($('#main-display').text() === '0' && $('#working-display').text() !== '0') {
                 $('#working-display').text($('#working-display').text() + '0.');
             } else {
@@ -102,9 +118,6 @@ $(document).ready(function () {
             }
             $('#main-display').text($('#main-display').text() + '.');
         }
-
-        //reset wasEquals so we can append a number instead of overwriting it
-        wasEquals = false;
     });
 
     //handle clear
@@ -139,8 +152,13 @@ $(document).ready(function () {
             }
             let result = eval(expr);
 
+            //if the result is too big to fit into the main display - use exponential notation
+            if (result.toString().length < 10) {
+                $('#main-display').text(formatNumber(result));
+            } else {
+                $('#main-display').text(result.toExponential(5));
+            }
             $('#working-display').text(formatNumber(result));
-            $('#main-display').text(formatNumber(result));
             wasEquals = true;
         }
     });
