@@ -1,126 +1,226 @@
+@import url('https://fonts.googleapis.com/css?family=Arimo|Barlow|Dosis|Julius+Sans+One|Noto+Sans|Roboto');
+
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,600,700');
+
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,600,700|Oswald:400,600');
+
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,600,700|Oswald:400,600|Source+Sans+Pro:400,600,700');
+
 html {
-    height: 100%
+	height: 100%
 }
 
 body {
-    overflow: hidden;
+	/*background: linear-gradient(#3c455c, #3c455c, #2b3140);*/
+	overflow: hidden;
+/*		font-family: 'Roboto', sans-serif;*/
+/*	font-family: 'Noto Sans', sans-serif;*/
+/*	font-family: 'Arimo', sans-serif;*/
+/*
+	font-family: 'Barlow', sans-serif;
+	font-family: 'Dosis', sans-serif;
+	
+*/
+/*	font-family: 'Arial', sans-serif;*/
+/*	font-family: 'Julius Sans One', sans-serif;*/
+	font-family: 'Montserrat', sans-serif;
+/*
+	font-family: 'Oswald', sans-serif;
+	font-family: 'Source Sans Pro', sans-serif;
+*/
 }
+
 
 /*.col-xs-*/
 
 @media screen and (max-width: 767px) {
-    body {
-        font-size: 14px;
-    }
-    body {
-        color: red;
-    }
+	body {
+		font-size: 24px;
+	}
+	body {
+		color: red;
+	}
 }
 
 
 /*.col-sm-*/
 
 @media only screen and (min-width: 768px) {
-    body {
-        font-size: 16px;
-    }
-    body {
-        color: blue;
-    }
+	body {
+		font-size: 24px;
+	}
+	body {
+		color: blue;
+	}
 }
 
 
 /*.col-md-*/
 
 @media only screen and (min-width: 992px) {
-    body {
-        font-size: 16px;
-    }
-    body {
-        color: fuchsia;
-    }
+	body {
+		font-size: 24px;
+	}
+	body {
+		color: fuchsia;
+	}
 }
 
 
 /*.col-lg-*/
 
 @media screen and (min-width: 1200px) {
-    body {
-        font-size: 16px;
-    }
-    body {
-        color: green;
-    }
+	body {
+		font-size: 24px;
+	}
+	body {
+		color: green;
+	}
 }
 
 h1 {
-    font-size: 2em;
+	font-size: 2em;
 }
 
 a,
 a:visited,
 a:hover,
 a:focus {
-    color: inherit;
-    text-decoration: none;
-    transition: .3s;
-}
-
-.btn-success:focus {
-    background-color: #5cb85c;
-    border-color: #4cae4c;
-    outline: none;
-}
-
-.btn-success:hover {
-    background-color: #449d44;
-}
-
-.btn-warning:focus {
-    background-color: #f0ad4e;
-    border-color: #eea236;
-    outline: none;
-}
-
-.btn-warning:hover {
-    background-color: #ec971f;
-}
-
-.tall-btn {
-    height: 97px;
-    position: absolute;
-    left: 145px;
-    z-index: 1;
-}
-
-.number-row {
-    padding-top: 5px;
-    position: relative;
+	color: inherit;
+	text-decoration: none;
+	transition: .3s;
 }
 
 
-#calculator {
-    float: none;
-    width: 190px;
-    margin: 50px auto;
+#calculator-outer {
+	float: none;
+	width: 330px;
+	height: 390px;
+	margin: 100px auto;
+	border: 1px solid #73AD21;
+	background: #EEEEEE;
+}
+
+#calculator-inner {
+	width: 330px;
+	margin: 30px auto;
+	border: 1px solid #73AD21;
 }
 
 .display {
-    text-align: right;
+	text-align: right;
+	color: #37474F;
 }
 
 #main-display {
-    font-size: 2em;
+	font-size: 2em;
 }
 
 #working-display {
-    font-size: 1em;
+	font-size: 1em;
 }
 
+
+.btn-group .button {
+	width: 70px;
+	height: 70px;
+    background-color: #4CAF50; /* Green */
+    border: 1px solid green;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+/*    font-size: 16px;*/
+/*	font-weight: 600;*/
+    cursor: pointer;
+    float: left;
+	border: none; /* Prevent double borders */
+}
+.btn-group .button:not(:last-child) {
+    border: none; /* Prevent double borders  */
+}
+
+.btn-group .button:hover {
+    background-color: #3e8e41;
+}
+
+
+.operator {
+	font-size: 1.5em;
+}
+
+
+.btn-warning {
+	background: #FCEB3B;
+	color: #546E7A;
+}
+
+.btn-success:focus {
+	background-color: #5cb85c;
+	border-color: #4cae4c;
+	outline: none;
+}
+
+.btn-success:hover {
+	background-color: #449d44;
+}
+
+.btn-warning:focus {
+	background-color: #f0ad4e;
+	border-color: #eea236;
+	outline: none;
+}
+
+.btn-warning:hover {
+	background-color: #ec971f;
+}
+
+
+.tall-btn {
+	height: 97px;
+	position: absolute;
+	left: 145px;
+	z-index: 1;
+}
+
+.dbl-btn {
+	width: 92px;
+}
+
+.number-row {
+	padding-top: 5px;
+	position: relative;
+}
+
+
 #btn-zero {
-    width: 92px;
+	/*	width: 92px;*/
+}
+
+#btn-clear {
+/*	width: 44px;*/
+}
+
+#btn-backspace {
+/*
+	width: 44px;
+	background: #F44336;
+	color: #F5F5F5;
+*/
 }
 
 #btn-period {
-    width: 45px;
+/*	width: 45px;*/
+	font-size: 1.5em;
+}
+
+#btn-addition {
+	height: 140px;
+		position: absolute;
+	left: 210px;
+	z-index: 1;
+}
+
+#btn-equals {
+	width: 140px;
 }

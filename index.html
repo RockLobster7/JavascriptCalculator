@@ -2,70 +2,77 @@
 <html>
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Javascript Calculator</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Javascript Calculator</title>
 
-    <!-- normalize -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+	<!-- normalize -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
 
-    <!-- Bootstrap 3 -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<!-- Bootstrap 3 -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-    <!-- Animate and Font Awesome css -->
-    <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css'>
-    <link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'>
+	<!-- Animate and Font Awesome css -->
+	<link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css'>
+	<link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'>
 
-    <!-- local files -->
-    <link rel="stylesheet" href="css/style.css">
-    <script src="js/index.js"></script>
+	<!-- local files -->
+	<link rel="stylesheet" href="css/style.css">
+	<script src="js/index.js"></script>
 </head>
 
 <body>
 
-    <div class="container">
-        <div class='row'>
-            <div id='calculator' class=''>
-                <!-- <h1> display</h1> -->
-                <p id='main-display' class='display'>0</p>
-                <p id='working-display' class='display'>0</p>
+	<div class="container">
+		<div class='row'>
+			<div id='calculator-outer' class=''>
+				<div id='calculator-inner' class=''>
+					<!-- <h1> display</h1> -->
+					<p id='working-display' class='display'>0</p>
+					<p id='main-display' class='display'>0</p>
 
-                <div class='number-row'>
-                    <button id='btn-clear' class="btn btn-success btn-lg">c</button>
-                    <button id='btn-divide' class="btn operator btn-success btn-lg">&divide;</button>
-                    <button id='btn-multiply' class="btn operator btn-success btn-lg">&times;</button>
-                    <button id='btn-subtract' class="btn operator btn-success btn-lg">&minus;</button>
-                </div>
 
-                <div class='number-row'>
-                    <button id='btn-seven' class="btn number btn-warning btn-lg">7</button>
-                    <button id='btn-eight' class="btn number btn-warning btn-lg">8</button>
-                    <button id='btn-nine' class="btn number btn-warning btn-lg">9</button>
-                    <button id='btn-addition' class="btn operator btn-success btn-lg tall-btn">+</button>
-                </div>
+					<div class='btn-group'>
+						<button id='btn-clear' class="button">ac</button>
+						<button id='btn-divide' class="button operator">&divide;</button>
+						<button id='btn-multiply' class="button operator">&times;</button>
+						<button id='btn-backspace' class="button">&#9003;</button>
+					</div>
 
-                <div class='number-row'>
-                    <button id='btn-four' class="btn number btn-warning btn-lg">4</button>
-                    <button id='btn-five' class="btn number btn-warning btn-lg">5</button>
-                    <button id='btn-six' class="btn number btn-warning btn-lg">6</button>
-                </div>
+					<div class='btn-group'>
+						<button id='btn-seven' class="button number">7</button>
+						<button id='btn-eight' class="button number">8</button>
+						<button id='btn-nine' class="button number">9</button>
+						<button id='btn-subtract' class="button operator">&minus;</button>
 
-                <div class='number-row'>
-                    <button id='btn-one' class="btn number btn-warning btn-lg">1</button>
-                    <button id='btn-two' class="btn number btn-warning btn-lg">2</button>
-                    <button id='btn-three' class="btn number btn-warning btn-lg">3</button>
-                    <button id='btn-equals' class="btn btn-success btn-lg tall-btn">=</button>
-                </div>
+					</div>
 
-                <div class='number-row'>
-                    <button id='btn-zero' class="btn number btn-warning btn-lg">0</button>
-                    <button id='btn-period' class="btn btn-warning btn-lg"> . </button>
-                </div>
-            </div>
-        </div>
-    </div>
+					<div class='btn-group'>
+						<button id='btn-four' class="button number">4</button>
+						<button id='btn-five' class="button number">5</button>
+						<button id='btn-six' class="button number">6</button>
+						<button id='btn-addition' class="button operator">+</button>
+					</div>
+
+					<div class='btn-group'>
+						<button id='btn-one' class="button number">1</button>
+						<button id='btn-two' class="button number">2</button>
+						<button id='btn-three' class="button number">3</button>
+
+					</div>
+
+					<div class='btn-group'>
+						<button id='btn-zero' class="button number">0</button>
+						<button id='btn-period' class="button">.</button>
+						<button id='btn-equals' class="button dbl-btn">=</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
 
 </body>
 
