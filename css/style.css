@@ -1,33 +1,15 @@
-@import url('https://fonts.googleapis.com/css?family=Arimo|Barlow|Dosis|Julius+Sans+One|Noto+Sans|Roboto');
 
-@import url('https://fonts.googleapis.com/css?family=Montserrat:400,600,700');
-
-@import url('https://fonts.googleapis.com/css?family=Montserrat:400,600,700|Oswald:400,600');
-
-@import url('https://fonts.googleapis.com/css?family=Montserrat:400,600,700|Oswald:400,600|Source+Sans+Pro:400,600,700');
-
+@import url('https://fonts.googleapis.com/css?family=Barlow+Semi+Condensed|Roboto+Condensed|Montserrat:400,600,700');
 html {
 	height: 100%
 }
 
 body {
-	/*background: linear-gradient(#3c455c, #3c455c, #2b3140);*/
+	background: linear-gradient(-45deg, #42A5F5 50%, #FFA726 0px);
 	overflow: hidden;
-/*		font-family: 'Roboto', sans-serif;*/
-/*	font-family: 'Noto Sans', sans-serif;*/
-/*	font-family: 'Arimo', sans-serif;*/
-/*
-	font-family: 'Barlow', sans-serif;
-	font-family: 'Dosis', sans-serif;
-	
-*/
-/*	font-family: 'Arial', sans-serif;*/
-/*	font-family: 'Julius Sans One', sans-serif;*/
-	font-family: 'Montserrat', sans-serif;
-/*
-	font-family: 'Oswald', sans-serif;
-	font-family: 'Source Sans Pro', sans-serif;
-*/
+/*	font-family: 'Roboto Condensed', sans-serif;*/
+/*	font-family: 'Montserrat', sans-serif;*/
+	font-family: 'Barlow Semi Condensed', sans-serif;
 }
 
 
@@ -35,7 +17,7 @@ body {
 
 @media screen and (max-width: 767px) {
 	body {
-		font-size: 24px;
+		font-size: 26px;
 	}
 	body {
 		color: red;
@@ -47,7 +29,7 @@ body {
 
 @media only screen and (min-width: 768px) {
 	body {
-		font-size: 24px;
+		font-size: 26px;
 	}
 	body {
 		color: blue;
@@ -59,7 +41,7 @@ body {
 
 @media only screen and (min-width: 992px) {
 	body {
-		font-size: 24px;
+		font-size: 26px;
 	}
 	body {
 		color: fuchsia;
@@ -71,7 +53,7 @@ body {
 
 @media screen and (min-width: 1200px) {
 	body {
-		font-size: 24px;
+		font-size: 26px;
 	}
 	body {
 		color: green;
@@ -91,64 +73,121 @@ a:focus {
 	transition: .3s;
 }
 
-
-#calculator-outer {
+#calculator-container {
 	float: none;
-	width: 330px;
-	height: 390px;
-	margin: 100px auto;
-	border: 1px solid #73AD21;
+	width: 287px;
+	height: 502px;
+	margin: 150px auto;
 	background: #EEEEEE;
+	box-shadow: 0px 6px 20px #808080;
+}
+
+#display-container {
+	position: relative;
+	padding-top: 40px;
+	border-bottom: 1px solid #e3e3e3;
+	box-shadow: 0px 3px 5px rgba(175, 175, 175, 0.62);
+	z-index: 1;
 }
 
 #calculator-inner {
-	width: 330px;
-	margin: 30px auto;
-	border: 1px solid #73AD21;
+	width: 287px;
+	padding: 15px auto;
+	border-right: 7px solid #37474F;
+	z-index: 0;
 }
 
 .display {
+	padding-right: 7px;
 	text-align: right;
 	color: #37474F;
 }
 
+#working-display {
+	font-size: .75em;
+	color: #546E7A;
+}
+
 #main-display {
 	font-size: 2em;
+	color: #37474F;
+	margin: 0;
+	z-index: 1;
 }
-
-#working-display {
-	font-size: 1em;
-}
-
 
 .btn-group .button {
 	width: 70px;
 	height: 70px;
-    background-color: #4CAF50; /* Green */
-    border: 1px solid green;
-    color: white;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-/*    font-size: 16px;*/
-/*	font-weight: 600;*/
-    cursor: pointer;
-    float: left;
-	border: none; /* Prevent double borders */
-}
-.btn-group .button:not(:last-child) {
-    border: none; /* Prevent double borders  */
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	cursor: pointer;
+	float: left;
+	border: none;
+	outline: 0;
+	transition: .05s;
 }
 
-.btn-group .button:hover {
-    background-color: #3e8e41;
+.btn-group .button:active {
+	background: pink;
 }
 
+.btn-grey {
+	color: #546E7A;
+	background: hsl(0, 0%, 93%);
+}
+
+.btn-grey:hover {
+	background-color: #b8b9bf;
+	background: hsl(0, 0%, 80%);
+}
+
+.btn-yellow {
+	background-color: hsl(54, 100%, 62%);
+	color: #546E7A;
+}
+
+.btn-yellow:hover {
+	background-color: hsl(54, 80%, 52%);
+}
+
+.btn-red {
+	background-color: hsl(4, 90%, 58%);
+	color: #F5F5F5;
+}
+
+.btn-red:active {
+	background-color: #ff6868 !important;
+}
+
+.btn-red:hover {
+	background-color: hsl(4, 70%, 48%);
+}
+
+.btn-green {
+	background-color: hsl(122, 39%, 49%);
+	color: #F5F5F5;
+}
+
+.btn-green:hover {
+	background-color: hsl(122, 39%, 44%);
+}
+
+.btn-green:active {
+	background-color: #ed8d86 !important;
+}
+
+.btn-divider-v {
+	border-right: 1px solid #CCDB96 !important;
+}
+
+.btn-divider-h {
+	border-bottom: 1px solid #CCDB96 !important;
+}
 
 .operator {
 	font-size: 1.5em;
 }
-
 
 .btn-warning {
 	background: #FCEB3B;
@@ -175,7 +214,6 @@ a:focus {
 	background-color: #ec971f;
 }
 
-
 .tall-btn {
 	height: 97px;
 	position: absolute;
@@ -183,26 +221,31 @@ a:focus {
 	z-index: 1;
 }
 
+
+/*
 .dbl-btn {
 	width: 92px;
 }
 
+
+/*
 .number-row {
 	padding-top: 5px;
 	position: relative;
 }
-
+*/
 
 #btn-zero {
 	/*	width: 92px;*/
 }
 
 #btn-clear {
-/*	width: 44px;*/
+	/*		width: 44px;*/
 }
 
 #btn-backspace {
-/*
+	font-size: .80em;
+	/*
 	width: 44px;
 	background: #F44336;
 	color: #F5F5F5;
@@ -210,13 +253,13 @@ a:focus {
 }
 
 #btn-period {
-/*	width: 45px;*/
+	/*	width: 45px;*/
 	font-size: 1.5em;
 }
 
 #btn-addition {
 	height: 140px;
-		position: absolute;
+	position: absolute;
 	left: 210px;
 	z-index: 1;
 }

@@ -27,46 +27,47 @@
 
 	<div class="container">
 		<div class='row'>
-			<div id='calculator-outer' class=''>
-				<div id='calculator-inner' class=''>
+			<div id='calculator-container' class=''>
+				<div id="display-container">
 					<!-- <h1> display</h1> -->
 					<p id='working-display' class='display'>0</p>
 					<p id='main-display' class='display'>0</p>
+				</div>
 
-
+				<div id='calculator-inner' class=''>
 					<div class='btn-group'>
-						<button id='btn-clear' class="button">ac</button>
-						<button id='btn-divide' class="button operator">&divide;</button>
-						<button id='btn-multiply' class="button operator">&times;</button>
-						<button id='btn-backspace' class="button">&#9003;</button>
+						<button id='btn-clear' class="button btn-grey">ac</button>
+						<button id='btn-divide' class="button operator btn-yellow btn-divider-v btn-divider-h">&divide;</button>
+						<button id='btn-multiply' class="button operator btn-yellow btn-divider-h">&times;</button>
+						<button id='btn-backspace' class="button btn-red ">&#9003;</button>
 					</div>
 
 					<div class='btn-group'>
-						<button id='btn-seven' class="button number">7</button>
-						<button id='btn-eight' class="button number">8</button>
-						<button id='btn-nine' class="button number">9</button>
-						<button id='btn-subtract' class="button operator">&minus;</button>
-
-					</div>
-
-					<div class='btn-group'>
-						<button id='btn-four' class="button number">4</button>
-						<button id='btn-five' class="button number">5</button>
-						<button id='btn-six' class="button number">6</button>
-						<button id='btn-addition' class="button operator">+</button>
-					</div>
-
-					<div class='btn-group'>
-						<button id='btn-one' class="button number">1</button>
-						<button id='btn-two' class="button number">2</button>
-						<button id='btn-three' class="button number">3</button>
+						<button id='btn-seven' class="button number btn-grey">7</button>
+						<button id='btn-eight' class="button number btn-grey">8</button>
+						<button id='btn-nine' class="button number btn-grey">9</button>
+						<button id='btn-subtract' class="button operator btn-yellow btn-divider-h">&minus;</button>
 
 					</div>
 
 					<div class='btn-group'>
-						<button id='btn-zero' class="button number">0</button>
-						<button id='btn-period' class="button">.</button>
-						<button id='btn-equals' class="button dbl-btn">=</button>
+						<button id='btn-four' class="button number btn-grey">4</button>
+						<button id='btn-five' class="button number btn-grey">5</button>
+						<button id='btn-six' class="button number btn-grey">6</button>
+						<button id='btn-addition' class="button operator btn-yellow">+</button>
+					</div>
+
+					<div class='btn-group'>
+						<button id='btn-one' class="button number btn-grey">1</button>
+						<button id='btn-two' class="button number btn-grey">2</button>
+						<button id='btn-three' class="button number btn-grey">3</button>
+
+					</div>
+
+					<div class='btn-group'>
+						<button id='btn-zero' class="button number btn-grey">0</button>
+						<button id='btn-period' class="button btn-grey">.</button>
+						<button id='btn-equals' class="button btn-green">=</button>
 					</div>
 				</div>
 			</div>
