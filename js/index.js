@@ -26,9 +26,9 @@ $(document).ready(function () {
 
     //handle numbers
     $('.number').click(function () {
-        //limit how many digits can be entered
+        //limit how many digits can be entered into the displays
         if ($('#main-display').text().length > 10) return;
-        if ($('#working-display').text().length > 20) return;
+        if ($('#working-display').text().length > 29) return;
 
         //if the working display is showing 0, then overwrite it with a new digit
         if ($('#working-display').text() === '0') {
@@ -55,22 +55,22 @@ $(document).ready(function () {
             $('#main-display').text(formatNumber($('#main-display').text() + $(this).text()));
 
             // retrieve the expreesion right up to the last operator but not the last number
-            let currentExpression = $('#working-display').text().match(/.*[÷×−+]+(?![^[÷×−+]]+$)/g);
+            let equation = $('#working-display').text().match(/.*[÷×−+]+(?![^[÷×−+]]+$)/g);
             // clean-up so we dont append 'null' to the working display
-            if (!currentExpression) currentExpression = [];
+            if (!equation) equation = [];
 
-            //add the last digit, then extract and format the last number of the current expression
+            //add the last digit, then extract and format the last number of the current equation
             let currentNumber = $('#working-display').text() + $(this).text();
             currentNumber = formatNumber(currentNumber.match(/(\d+\.?,?)+(?=[^÷×−+]*$)/g));
 
-            $('#working-display').text(currentExpression + currentNumber);
+            $('#working-display').text(equation + currentNumber);
         }
     });
 
     //handle operators
     $('.operator').click(function () {
         //check that the screen is not full before adding more operators
-        if ($('#working-display').text().length > 19) return;
+        if ($('#working-display').text().length > 28) return;
 
         let workingDisplay = $('#working-display').text();
 
@@ -129,10 +129,10 @@ $(document).ready(function () {
 
     //handle equals
     $('#btn-equals').click(function () {
-        //if the expression contains digits and ends with a period or digit
+        //if the equation contains digits and ends with a period or digit
         if (/\d+(\.?$)(\d$)?/.test($('#working-display').text())) {
 
-            // convertHTML symbols in the expression to javascript arithmetic operators
+            // convertHTML symbols in the equation to javascript arithmetic operators
             var html = {
                 "÷": ")/",
                 "×": ")*",
@@ -145,7 +145,7 @@ $(document).ready(function () {
             //remove any thousand separator formatting before evaluating
             expr = expr.replace(/,/g, '');
 
-            //add parentheses to encapsulate the mathematical expression because eval won't do it 
+            //add parentheses to encapsulate the mathematical equation because eval won't do it 
             //otherwise it produces incorrect results 
             for (i = 0; i < expr.split(')').length - 1; i++) {
                 expr = '(' + expr;
@@ -160,6 +160,48 @@ $(document).ready(function () {
             }
             $('#working-display').text(formatNumber(result));
             wasEquals = true;
+        }
+    });
+
+    //handle backspace
+    $('#btn-backspace').click(function () {
+
+        let equation = $('#working-display').text().match(/.*[÷×−+]+(?![^[÷×−+]]+$)/g);
+        // clean-up in case it's 'null' 
+        if (!equation) equation = [];
+
+        //add the last digit, then extract and format the last number of the current equation
+        let equationLastNumber = $('#working-display').text();
+        equationLastNumber = equationLastNumber.match(/(\d+\.?,?)+(?=[^÷×−+]*$)/g);
+
+        //if the main display has lots of numbers
+        if ($('#main-display').text().length > 1) {
+            // remove last digit from both displays
+            $('#main-display').text(
+                formatNumber($('#main-display').text().substring(
+                    0, $('#main-display').text().length - 1)));
+            $('#working-display').text(equation + $('#main-display').text());
+
+            //if the equation's last number is '0.', then also remove the period, leaving the zero
+            if (equationLastNumber[0] === '0.') {
+                $('#working-display').text(
+                    $('#working-display').text().substring(
+                        0, $('#working-display').text().length - 1));
+            }
+
+            //if the main display has one digit which is not zero and we dont have an equation
+        } else if ($('#main-display').text() !== '0' && equation.length === 0) {
+            // reset both displays
+            $('#main-display').text('0');
+            $('#working-display').text('0');
+
+            //if the main display has one digit which is not zero and we have an equation
+        } else if ($('#main-display').text() !== '0' && equation.length >= 1) {
+            // reset the main and remove last digit from main display
+            $('#main-display').text('0');
+            $('#working-display').text(
+                $('#working-display').text().substring(
+                    0, $('#working-display').text().length - 1));
         }
     });
 });
