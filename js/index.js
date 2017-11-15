@@ -35,8 +35,8 @@ $(document).ready(function () {
             $('#main-display').text($(this).text());
             $('#working-display').text($(this).text());
 
-            //if the main display is showing 0, then append the digit to the working display
-        } else if ($('#main-display').text() === '0') {
+            //if the main display is showing 0, and Zero is not being entered append the digit to the working display
+        } else if ($('#main-display').text() === '0' && $(this).text() != '0') {
             $('#main-display').text($(this).text());
             $('#working-display').text($('#working-display').text() + $(this).text());
 
@@ -59,11 +59,11 @@ $(document).ready(function () {
             // clean-up so we dont append 'null' to the working display
             if (!equation) equation = [];
 
-            //add the last digit, then extract and format the last number of the current equation
+            //add the last digit, then extract and format the last number of the current equation...
             let currentNumber = $('#working-display').text() + $(this).text();
             currentNumber = formatNumber(currentNumber.match(/(\d+\.?,?)+(?=[^÷×−+]*$)/g));
-
-            $('#working-display').text(equation + currentNumber);
+            //...unless zero is being pressed. Then dont add leading zeros to the equation
+            if (currentNumber != '0') $('#working-display').text(equation + currentNumber);
         }
     });
 
@@ -71,6 +71,9 @@ $(document).ready(function () {
     $('.operator').click(function () {
         //check that the screen is not full before adding more operators
         if ($('#working-display').text().length > 28) return;
+
+        //if equals was pressed last, move the main display to the working display to build the next equation
+        if (wasEquals) $('#working-display').text($('#main-display').text());
 
         let workingDisplay = $('#working-display').text();
 
@@ -158,13 +161,20 @@ $(document).ready(function () {
             } else {
                 $('#main-display').text(result.toExponential(5));
             }
-            $('#working-display').text(formatNumber(result));
+            //overwrite the equation with the result
+            // $('#working-display').text(formatNumber(result));
+            
+            //retain the equation and append an equals sign
+            $('#working-display').text($('#working-display').text() + $(this).text());
             wasEquals = true;
         }
     });
 
     //handle backspace
     $('#btn-backspace').click(function () {
+
+        //if equals was pressed last, then do nothing
+        if (wasEquals) return;
 
         let equation = $('#working-display').text().match(/.*[÷×−+]+(?![^[÷×−+]]+$)/g);
         // clean-up in case it's 'null' 
