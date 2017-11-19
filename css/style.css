@@ -16,9 +16,8 @@ body {
 
 @media screen and (max-width: 767px) {
 	body {
-		font-size: 26px;
+		font-size: 20px;
 	}
-
 }
 
 
@@ -26,7 +25,7 @@ body {
 
 @media only screen and (min-width: 768px) {
 	body {
-		font-size: 26px;
+		font-size: 20px;
 	}
 }
 
@@ -35,9 +34,8 @@ body {
 
 @media only screen and (min-width: 992px) {
 	body {
-		font-size: 26px;
+		font-size: 20px;
 	}
-
 }
 
 
@@ -66,7 +64,7 @@ a:focus {
 #calculator-container {
 	float: none;
 	width: 287px;
-	height: 502px;
+	height: auto;
 	margin: 150px auto;
 	background: #EEEEEE;
 	box-shadow: 0px 6px 20px #808080;
