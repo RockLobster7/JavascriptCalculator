@@ -18,9 +18,7 @@ body {
 	body {
 		font-size: 26px;
 	}
-	body {
-		color: red;
-	}
+
 }
 
 
@@ -29,9 +27,6 @@ body {
 @media only screen and (min-width: 768px) {
 	body {
 		font-size: 26px;
-	}
-	body {
-		color: blue;
 	}
 }
 
@@ -42,9 +37,7 @@ body {
 	body {
 		font-size: 26px;
 	}
-	body {
-		color: fuchsia;
-	}
+
 }
 
 
@@ -54,9 +47,7 @@ body {
 	body {
 		font-size: 26px;
 	}
-	body {
-		color: green;
-	}
+
 }
 
 h1 {
